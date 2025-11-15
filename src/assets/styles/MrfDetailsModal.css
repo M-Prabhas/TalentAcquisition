@@ -1,0 +1,29 @@
+.mrf-info {
+  padding: 10px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.info-column {
+  flex: 1;
+}
+
+.info-column p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.footer-info {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.footer-info p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
