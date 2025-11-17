@@ -58,8 +58,6 @@ const ManageCandidatesPage = () => {
     qualification: false,
     job: false
   });
-
-  const dateFilter = "";
   const [dateSortOrder, setDateSortOrder] = useState("recent");
 
   const [showAllPostings, setShowAllPostings] = useState(false);
