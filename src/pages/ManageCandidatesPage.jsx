@@ -49,7 +49,7 @@ const ManageCandidatesPage = () => {
     designation: "",
     keywords: "",
     languages: "",
-    dateApplied: new Date().toISOString().split("T")[0]
+    dateApplied: ""
   });
 
   const [expandedFilterCategories, setExpandedFilterCategories] = useState({
@@ -59,7 +59,7 @@ const ManageCandidatesPage = () => {
     job: false
   });
 
-  const dateFilter = new Date().toISOString().split("T")[0];
+  const dateFilter = "";
   const [dateSortOrder, setDateSortOrder] = useState("recent");
 
   const [showAllPostings, setShowAllPostings] = useState(false);
@@ -170,7 +170,7 @@ const ManageCandidatesPage = () => {
   const getFilteredAndSortedCandidates = () => {
     let candidatesList = getFilteredCandidatesByRole();
 
-    const effectiveDateFilter = filters.dateApplied || dateFilter;
+    const effectiveDateFilter = filters.dateApplied;
 
     if (effectiveDateFilter) {
       candidatesList = candidatesList.filter((c) => {
@@ -890,6 +890,48 @@ const ManageCandidatesPage = () => {
                   )}
                 </div>
               </div>
+
+              {/* NEW: Tab buttons for Pitch, Assessment, Interview at bottom of filters */}
+              {loggedInUser.role === "HR Manager" && inviteSent && (
+                <div className="card-footer bg-light">
+                  <h6 className="mb-2 small text-muted">VIEW MODE</h6>
+                  <div className="d-flex flex-column gap-2">
+                    <button 
+                      className={`btn btn-sm ${viewMode === "selection" ? "btn-primary" : "btn-outline-primary"} w-100`}
+                      onClick={() => setViewMode("selection")}
+                      disabled={showOnlySelected}
+                    >
+                      <i className="bi bi-list-check me-1"></i>
+                      Selection
+                    </button>
+                    <button 
+                      className={`btn btn-sm ${viewMode === "pitch" ? "btn-primary" : "btn-outline-primary"} w-100`}
+                      onClick={() => setViewMode("pitch")}
+                      disabled={showOnlySelected}
+                    >
+                      <i className="bi bi-telephone me-1"></i>
+                      Pitch
+                    </button>
+                    <button 
+                      className={`btn btn-sm ${viewMode === "assessment" ? "btn-primary" : "btn-outline-primary"} w-100`}
+                      onClick={() => setViewMode("assessment")}
+                      disabled={showOnlySelected}
+                    >
+                      <i className="bi bi-clipboard-check me-1"></i>
+                      Assessment
+                    </button>
+                    <button 
+                      className={`btn btn-sm ${viewMode === "interview" ? "btn-primary" : "btn-outline-primary"} w-100`}
+                      onClick={() => setViewMode("interview")}
+                      disabled={showOnlySelected}
+                    >
+                      <i className="bi bi-people me-1"></i>
+                      Interview
+                    </button>
+                  </div>
+                </div>
+              )}
+
             </div>
           </div>
 
@@ -955,6 +997,8 @@ const ManageCandidatesPage = () => {
                 </button>
               </div>
             </div>
+           
+
 
             <div className="card shadow-sm">
               <div className="card-body p-0">
